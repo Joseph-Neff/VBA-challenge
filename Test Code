@@ -1,0 +1,32 @@
+Sub Stockmarket()
+    Dim Stock_name As String
+    Dim Stock_Value As Variant
+    Dim Stock_Table_Row As Integer
+    Stock_Value = 0
+    lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+    Stock_Table_Row = 2
+    
+For i = 2 To lastrow
+
+    If Cells(i, 1).Value <> Cells(i, 1).Value Then
+    
+        Stock_name = Cells(i, 1).Value
+        Stock_Value = Stock_Value + Cells(i, 7).Value
+        Range("J" & Stock_Table_Row).Value = Stock_name
+        Range("K" & Stock_Table_Row).Value = Stock_Value
+        Stock_Table_Row = Stock_Table_Row + 1
+        Stock_Value = 0
+       
+        
+        Else
+        Stock_Value = Stock_Value + Cells(i, 7).Value
+    
+        
+        
+      End If
+      
+Next i
+     
+   
+    
+End Sub
