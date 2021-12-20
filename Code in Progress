@@ -4,7 +4,7 @@ Sub Stockmarket()
     Dim Stock_count As Variant
     Dim Stock_Table_Row As Integer
     Dim Stock_change As Variant
-    Dim Stock_percent As Integer
+    Dim Stock_percent As Variant
     
     'Setting Values
     Stock_percent = 0
@@ -23,40 +23,35 @@ For i = 2 To lastrow
         Stock_name = Cells(i, 1).Value
         Stock_count = Stock_count + Cells(i, 7).Value
         Stock_change = Stock_change + (Cells(i, 6).Value - Cells(i, 3).Value)
-        'Stock_percent = ???
+        'Stock_percent =
         
         
         'Data Table Creation
         Range("J" & Stock_Table_Row).Value = Stock_name
         Range("K" & Stock_Table_Row).Value = Stock_change
-            'Color Formatting
-             If Cells(i, 11) < 1 Then
-                Cells(i, 11).Inteior.ColorIndex = 4
-            ElseIf Cells(i, 11) >= 1 Then
-                Cells(i, 11).Interior.ColorIndex = 2
-                
-            End If
-            
-                
-             
         Range("L" & Stock_Table_Row).Value = Stock_percent
         Range("M" & Stock_Table_Row).Value = Stock_count
-        
-        
         Stock_Table_Row = Stock_Table_Row + 1
         Stock_count = 0
         Stock_change = 0
+        Stock_percent = 0
         
        
-        
     Else
         Stock_count = Stock_count + Cells(i + 1, 7).Value
         Stock_change = Stock_change + (Cells(i, 6).Value - Cells(i, 3).Value)
 
-    
-        
+
         
       End If
+      
+    'Color Formatting
+    If Cells(i, 11) < 1 Then
+                Cells(i, 11).Interior.ColorIndex = 3
+    ElseIf Cells(i, 11) >= 1 Then
+               Cells(i, 11).Interior.ColorIndex = 4
+                
+    End If
       
 Next i
      
