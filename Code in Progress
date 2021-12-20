@@ -1,25 +1,34 @@
 Sub Stockmarket()
     Dim Stock_name As String
-    Dim Stock_Value As Variant
+    Dim Stock_count As Variant
     Dim Stock_Table_Row As Integer
-    Stock_Value = 0
+    Dim Stock_change As Variant
+    Dim Stock_percent As Integer
+    Stock_percent = 0
+    Stock_change = 0
+    Stock_count = 0
     lastrow = Cells(Rows.Count, 1).End(xlUp).Row
     Stock_Table_Row = 2
     
 For i = 2 To lastrow
 
-    If Cells(i, 1).Value <> Cells(i+1, 1).Value Then
+    If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
     
         Stock_name = Cells(i, 1).Value
-        Stock_Value = Stock_Value + Cells(i, 7).Value
+        Stock_count = Stock_count + Cells(i, 7).Value
+        Stock_change = Stock_change + Cells(i, 6).Value - Cells(i, 3).Value
         Range("J" & Stock_Table_Row).Value = Stock_name
-        Range("K" & Stock_Table_Row).Value = Stock_Value
+        Range("K" & Stock_Table_Row).Value = Stock_change
+        Range("L" & Stock_Table_Row).Value = Stock_percent
+        Range("M" & Stock_Table_Row).Value = Stock_count
         Stock_Table_Row = Stock_Table_Row + 1
-        Stock_Value = 0
+        Stock_count = 0
+        Stock_change = 0
        
         
-        Else
-        Stock_Value = Stock_Value + Cells(i+1, 7).Value
+    Else
+        Stock_count = Stock_count + Cells(i + 1, 7).Value
+        Stock_change = Cells(i, 6).Value - Cells(i, 3).Value
     
         
         
