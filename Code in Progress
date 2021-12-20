@@ -8,7 +8,7 @@ Sub Stockmarket()
     
 For i = 2 To lastrow
 
-    If Cells(i, 1).Value <> Cells(i, 1).Value Then
+    If Cells(i, 1).Value <> Cells(i+1, 1).Value Then
     
         Stock_name = Cells(i, 1).Value
         Stock_Value = Stock_Value + Cells(i, 7).Value
@@ -19,7 +19,7 @@ For i = 2 To lastrow
        
         
         Else
-        Stock_Value = Stock_Value + Cells(i, 7).Value
+        Stock_Value = Stock_Value + Cells(i+1, 7).Value
     
         
         
