@@ -23,8 +23,7 @@ For i = 2 To lastrow
         Stock_name = Cells(i, 1).Value
         Stock_count = Stock_count + Cells(i, 7).Value
         Stock_change = Stock_change + (Cells(i, 6).Value - Cells(i, 3).Value)
-        'Stock_percent =
-        
+        'Stock_percent = (Cells(i, 6).Value - Cells(i, 3).Value) / Cells(i, 3).Value
         
         'Data Table Creation
         Range("J" & Stock_Table_Row).Value = Stock_name
@@ -40,8 +39,7 @@ For i = 2 To lastrow
     Else
         Stock_count = Stock_count + Cells(i + 1, 7).Value
         Stock_change = Stock_change + (Cells(i, 6).Value - Cells(i, 3).Value)
-
-
+        'Stock_percent = (Cells(i, 6).Value - Cells(i, 3).Value) / Cells(i, 3).Value
         
       End If
       
@@ -55,6 +53,4 @@ For i = 2 To lastrow
       
 Next i
      
-   
-    
 End Sub
