@@ -1,4 +1,12 @@
 Sub Stockmarket()
+
+    'Fix looping through sheets
+    
+    'Dim ws As Worksheet
+
+    'For Each ws In
+
+    
     'Naming Variables
     Dim Stock_name As String
     Dim Stock_count As Variant
@@ -7,6 +15,7 @@ Sub Stockmarket()
     Dim Open_Price As Variant
     Dim Close_Price As Variant
     Dim Stock_percent As Variant
+    
     
     
     'Setting Values
@@ -33,7 +42,14 @@ For i = 2 To lastrow
         Stock_count = Stock_count + Cells(i, 7).Value
         Close_Price = Cells(i, 6).Value
         Stock_change = Close_Price - Open_Price
-        Stock_percent = Stock_change / Open_Price
+        
+        If Open_Price = 0 Then
+            Stock_percent = 0
+        Else
+            Stock_percent = Stock_change / Open_Price
+        
+        End If
+        
         
         'Data Table Creation
         Range("J" & Stock_Table_Row).Value = Stock_name
@@ -60,5 +76,7 @@ For i = 2 To lastrow
     End If
       
 Next i
+
+Next ws
      
 End Sub
