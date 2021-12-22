@@ -4,7 +4,10 @@ Sub Stockmarket()
     Dim Stock_count As Variant
     Dim Stock_Table_Row As Integer
     Dim Stock_change As Variant
-    Dim Stock_percent As Variant
+    Dim Open_Price As Variant
+    Dim Close_Price As Variant
+    Dim Stock_percent As Object
+    
     
     'Setting Values
     Stock_percent = 0
@@ -12,18 +15,25 @@ Sub Stockmarket()
     Stock_count = 0
     lastrow = Cells(Rows.Count, 1).End(xlUp).Row
     Stock_Table_Row = 2
+    Open_Price = Range("C2").Value
+    
     
     'Starting Loop
 For i = 2 To lastrow
     
     'Setting Conditional
-    If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
+    If Cells(i, 1).Value = Cells(i + 1, 1).Value Then
+    
+        Stock_count = Stock_count + Cells(i + 1, 7).Value
+        
+    Else
     
         'Formulas
         Stock_name = Cells(i, 1).Value
         Stock_count = Stock_count + Cells(i, 7).Value
-        Stock_change = Stock_change + (Cells(i, 6).Value - Cells(i, 3).Value)
-        'Stock_percent = (Cells(i, 6).Value - Cells(i, 3).Value) / Cells(i, 3).Value
+        Close_Price = Cells(i, 6).Value
+        Stock_change = Close_Price - Open_Price
+        Stock_percent = Stock_change / Open_Price
         
         'Data Table Creation
         Range("J" & Stock_Table_Row).Value = Stock_name
@@ -31,15 +41,13 @@ For i = 2 To lastrow
         Range("L" & Stock_Table_Row).Value = Stock_percent
         Range("M" & Stock_Table_Row).Value = Stock_count
         Stock_Table_Row = Stock_Table_Row + 1
+        
+        Open_Price = Cells(i + 1, 3).Value
         Stock_count = 0
         Stock_change = 0
         Stock_percent = 0
         
        
-    Else
-        Stock_count = Stock_count + Cells(i + 1, 7).Value
-        Stock_change = Stock_change + (Cells(i, 6).Value - Cells(i, 3).Value)
-        'Stock_percent = (Cells(i, 6).Value - Cells(i, 3).Value) / Cells(i, 3).Value
         
       End If
       
