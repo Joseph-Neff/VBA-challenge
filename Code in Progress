@@ -6,7 +6,7 @@ Sub Stockmarket()
     Dim Stock_change As Variant
     Dim Open_Price As Variant
     Dim Close_Price As Variant
-    Dim Stock_percent As Object
+    Dim Stock_percent As Variant
     
     
     'Setting Values
@@ -24,7 +24,7 @@ For i = 2 To lastrow
     'Setting Conditional
     If Cells(i, 1).Value = Cells(i + 1, 1).Value Then
     
-        Stock_count = Stock_count + Cells(i + 1, 7).Value
+        Stock_count = Stock_count + Cells(i, 7).Value
         
     Else
     
@@ -39,6 +39,7 @@ For i = 2 To lastrow
         Range("J" & Stock_Table_Row).Value = Stock_name
         Range("K" & Stock_Table_Row).Value = Stock_change
         Range("L" & Stock_Table_Row).Value = Stock_percent
+        Range("L" & Stock_Table_Row).NumberFormat = "0.00%"
         Range("M" & Stock_Table_Row).Value = Stock_count
         Stock_Table_Row = Stock_Table_Row + 1
         
@@ -46,7 +47,6 @@ For i = 2 To lastrow
         Stock_count = 0
         Stock_change = 0
         Stock_percent = 0
-        
        
         
       End If
